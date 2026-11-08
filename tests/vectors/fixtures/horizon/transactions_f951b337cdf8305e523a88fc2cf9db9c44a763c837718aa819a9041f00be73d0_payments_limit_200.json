@@ -1,0 +1,80 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://horizon-testnet.stellar.org/transactions/f951b337cdf8305e523a88fc2cf9db9c44a763c837718aa819a9041f00be73d0/payments?cursor=&limit=200&order=asc"
+    },
+    "next": {
+      "href": "https://horizon-testnet.stellar.org/transactions/f951b337cdf8305e523a88fc2cf9db9c44a763c837718aa819a9041f00be73d0/payments?cursor=21124594781933569&limit=200&order=asc"
+    },
+    "prev": {
+      "href": "https://horizon-testnet.stellar.org/transactions/f951b337cdf8305e523a88fc2cf9db9c44a763c837718aa819a9041f00be73d0/payments?cursor=21124594781933569&limit=200&order=desc"
+    }
+  },
+  "_embedded": {
+    "records": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://horizon-testnet.stellar.org/operations/21124594781933569"
+          },
+          "transaction": {
+            "href": "https://horizon-testnet.stellar.org/transactions/f951b337cdf8305e523a88fc2cf9db9c44a763c837718aa819a9041f00be73d0"
+          },
+          "effects": {
+            "href": "https://horizon-testnet.stellar.org/operations/21124594781933569/effects"
+          },
+          "succeeds": {
+            "href": "https://horizon-testnet.stellar.org/effects?order=desc&cursor=21124594781933569"
+          },
+          "precedes": {
+            "href": "https://horizon-testnet.stellar.org/effects?order=asc&cursor=21124594781933569"
+          }
+        },
+        "id": "21124594781933569",
+        "paging_token": "21124594781933569",
+        "transaction_successful": true,
+        "source_account": "GDXCH3MUTV2YPMFMEN2X3SLRHEZM6FBXNLEQR3HD2PSGQOAUDEX7NEKH",
+        "type": "invoke_host_function",
+        "type_i": 24,
+        "created_at": "2026-09-28T17:17:32Z",
+        "transaction_hash": "f951b337cdf8305e523a88fc2cf9db9c44a763c837718aa819a9041f00be73d0",
+        "function": "HostFunctionTypeHostFunctionTypeInvokeContract",
+        "parameters": [
+          {
+            "value": "AAAAEgAAAAFQRc1ewHKado/VrQJQWFLfTwKNzoMOWsUiCbpISDsvAQ==",
+            "type": "Address"
+          },
+          {
+            "value": "AAAADwAAAAh0cmFuc2Zlcg==",
+            "type": "Sym"
+          },
+          {
+            "value": "AAAAEgAAAAAAAAAAj78B6qXPmv7oxFoBW33ZPAtPs5iIRx4ysdktBZ/g6tU=",
+            "type": "Address"
+          },
+          {
+            "value": "AAAAEgAAAAAAAAAA3f2sRoTVYRFQ70XQ0C4qjCBe7n+ZnfcQ8GMoKEoY5As=",
+            "type": "Address"
+          },
+          {
+            "value": "AAAACgAAAAAAAAAAAAAAAAAAJxA=",
+            "type": "I128"
+          }
+        ],
+        "address": "",
+        "salt": "",
+        "asset_balance_changes": [
+          {
+            "asset_type": "credit_alphanum4",
+            "asset_code": "USDC",
+            "asset_issuer": "GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+            "type": "transfer",
+            "from": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+            "to": "GDO73LCGQTKWCEKQ55C5BUBOFKGCAXXOP6MZ35YQ6BRSQKCKDDSAWECM",
+            "amount": "0.0010000"
+          }
+        ]
+      }
+    ]
+  }
+}

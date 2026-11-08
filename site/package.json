@@ -1,0 +1,28 @@
+{
+  "name": "agentenact-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 3838",
+    "build": "next build",
+    "verifier": "bun run verifier/build.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@stellar/freighter-api": "^6",
+    "buffer": "^6.0.3",
+    "next": "16.3.5",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19"
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "name": "agentenact",
+  "version": "0.4.0",
+  "description": "Provable agent outputs: signed, payment-bound Enactment Records, chain-agnostic. The execution layer agents are created with and run on.",
+  "license": "MIT",
+  "author": "Kerem Noras <kerem@noras.tech>",
+  "homepage": "https://agentenact.io",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "agentenact": "./dist/cli.js",
+    "agentenact-mcp": "./dist/bin/agentenact-mcp.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./adapters/stellar": {
+      "types": "./dist/adapters/stellar.d.ts",
+      "import": "./dist/adapters/stellar.js",
+      "default": "./dist/adapters/stellar.js"
+    },
+    "./serve": {
+      "types": "./dist/serve.d.ts",
+      "import": "./dist/serve.js",
+      "default": "./dist/serve.js"
+    },
+    "./hire": {
+      "types": "./dist/hire.d.ts",
+      "import": "./dist/hire.js",
+      "default": "./dist/hire.js"
+    },
+    "./create": {
+      "types": "./dist/create.d.ts",
+      "import": "./dist/create.js",
+      "default": "./dist/create.js"
+    },
+    "./adapters/evm": {
+      "types": "./dist/adapters/evm.d.ts",
+      "import": "./dist/adapters/evm.js",
+      "default": "./dist/adapters/evm.js"
+    },
+    "./adapters/solana": {
+      "types": "./dist/adapters/solana.d.ts",
+      "import": "./dist/adapters/solana.js",
+      "default": "./dist/adapters/solana.js"
+    },
+    "./templates": {
+      "types": "./dist/templates.d.ts",
+      "import": "./dist/templates.js",
+      "default": "./dist/templates.js"
+    },
+    "./wallet": {
+      "types": "./dist/wallet.d.ts",
+      "import": "./dist/wallet.js",
+      "default": "./dist/wallet.js"
+    },
+    "./signer": {
+      "types": "./dist/signer.d.ts",
+      "import": "./dist/signer.js",
+      "default": "./dist/signer.js"
+    },
+    "./community": {
+      "types": "./dist/community.d.ts",
+      "import": "./dist/community.js",
+      "default": "./dist/community.js"
+    },
+    "./skills": {
+      "types": "./dist/skills.d.ts",
+      "import": "./dist/skills.js",
+      "default": "./dist/skills.js"
+    },
+    "./orchestrate": {
+      "types": "./dist/orchestrate.d.ts",
+      "import": "./dist/orchestrate.js",
+      "default": "./dist/orchestrate.js"
+    },
+    "./mcp": {
+      "types": "./dist/mcp.d.ts",
+      "import": "./dist/mcp.js",
+      "default": "./dist/mcp.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "bun test",
+    "clean": "rm -rf dist",
+    "prepack": "bun run clean && bun run build && bun run scripts/check-pack.ts"
+  },
+  "keywords": [
+    "agentenact",
+    "agentkarma",
+    "agents",
+    "x402",
+    "erc-8004",
+    "stellar",
+    "provenance",
+    "attestation"
+  ],
+  "peerDependencies": {
+    "@stellar/stellar-sdk": ">=16.4.1 <17",
+    "@x402/core": ">=2.29.0 <3",
+    "@x402/stellar": ">=2.29.0 <3",
+    "@x402/fetch": ">=2.29.0 <3",
+    "@x402/evm": ">=2.29.0 <3",
+    "viem": ">=2.0.0 <3",
+    "@x402/svm": ">=2.29.0 <3",
+    "@solana/kit": ">=8.0.0 <9"
+  },
+  "peerDependenciesMeta": {
+    "@stellar/stellar-sdk": {
+      "optional": true
+    },
+    "@x402/core": {
+      "optional": true
+    },
+    "@x402/stellar": {
+      "optional": true
+    },
+    "@x402/fetch": {
+      "optional": true
+    },
+    "@x402/evm": {
+      "optional": true
+    },
+    "viem": {
+      "optional": true
+    },
+    "@x402/svm": {
+      "optional": true
+    },
+    "@solana/kit": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "@solana/kit": "8.5.0",
+    "@stellar/stellar-sdk": "16.4.1",
+    "@x402/core": "2.29.0",
+    "@x402/evm": "2.29.0",
+    "@x402/fetch": "2.29.0",
+    "@x402/stellar": "2.29.0",
+    "@x402/svm": "2.29.0",
+    "bun-types": "latest",
+    "typescript": "^5.9.3",
+    "viem": "^2.48.0"
+  }
+}

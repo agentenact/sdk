@@ -1,0 +1,26 @@
+# Deploy from this directory (`cd site && servel deploy`); servel ignores build.context.
+name: agentenact
+domain: agentenact.io
+domains:
+  - agentenact.io
+  - agentenact.srvl.app
+
+port: 80
+
+build:
+  dockerfile: Dockerfile
+
+healthcheck:
+  type: http
+  path: /
+  interval: 30s
+  timeout: 5s
+  retries: 3
+
+resources:
+  memory: 64M
+  cpus: 0.25
+
+update:
+  order: start-first
+  failure_action: rollback

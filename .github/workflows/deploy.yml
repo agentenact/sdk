@@ -1,0 +1,63 @@
+name: Deploy site
+
+# Retired 2026-10-28: agentenact.io is now served by the one web app in agentenact-cloud (apps/web). A push no longer
+# deploys this site, which would put the old site back on agentenact.io. Its deployment was removed the same day; do not run
+# this unless the old site is deliberately brought back.
+on:
+  workflow_dispatch:
+
+# packages: write lets GITHUB_TOKEN push the site image to ghcr.io; the cluster only pulls it.
+permissions:
+  contents: read
+  packages: write
+
+# One deploy at a time; a newer push waits for the running one instead of racing it.
+concurrency:
+  group: deploy-site
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Download first: piping into bash with </dev/null would feed bash an empty script.
+      - name: Install servel (client only)
+        run: |
+          curl -fsSL https://servel.dev/install.sh -o "$RUNNER_TEMP/servel-install.sh"
+          bash "$RUNNER_TEMP/servel-install.sh" --client </dev/null
+          servel version
+
+      # The token is the pipeline's one secret: in CI, servel derives the SSH key from it, so every run rejoins
+      # the same user (ci-k-nrs-agentenact) and spends no invite use.
+      - name: Join the server
+        env:
+          SERVEL_TOKEN: ${{ secrets.SERVEL_TOKEN }}
+        run: servel access join
+
+      # SERVEL_IMAGE=auto builds the image here, tags it with the commit sha, pushes it to
+      # ghcr.io/k-nrs/agentenact with a registry build cache, and the cluster only pulls it.
+      # The commits may come from a bot; credit the deploy to the GitHub user who pushed or ran it.
+      - name: Deploy
+        env:
+          DEPLOYER: ${{ github.actor }}
+          SERVEL_IMAGE: auto
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: servel deploy --verbose --author "$DEPLOYER"
+
+      # verify health matches this app exactly and exits non-zero when it is unhealthy.
+      - name: Check health
+        run: servel verify health agentenact
+
+      - name: Check the site answers
+        run: |
+          for url in https://agentenact.io/ https://agentenact.srvl.app/; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --retry 5 --retry-delay 5 --retry-all-errors "$url")
+            echo "$url → $code"
+            [ "$code" = 200 ] || exit 1
+          done

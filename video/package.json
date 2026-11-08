@@ -1,0 +1,25 @@
+{
+  "name": "agentenact-video",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AgentEnact explainer video — Remotion composition",
+  "type": "module",
+  "scripts": {
+    "dev": "remotion studio remotion/index.ts",
+    "render": "remotion render remotion/index.ts AgentEnactExplainer out/agentenact-explainer.mp4 --codec h264 --crf 18 --color-space bt709",
+    "render:poster": "remotion still remotion/index.ts AgentEnactExplainer out/poster.jpg --frame=1100 --image-format=jpeg"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "remotion": "^4.0.450"
+  },
+  "devDependencies": {
+    "@remotion/bundler": "^4.0.450",
+    "@remotion/cli": "^4.0.450",
+    "@remotion/google-fonts": "^4.0.450",
+    "@remotion/renderer": "^4.0.450",
+    "@types/react": "^19.2.14",
+    "typescript": "^6.0.2"
+  }
+}

@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+.DS_Store
+
+# servel deploy state: server host and join key seed; repo is meant to go public
+.servel/
+
+.servel/*.local.json
+
+# design-skill memory, local only
+.hallmark/

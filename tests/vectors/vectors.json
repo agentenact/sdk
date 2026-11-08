@@ -1,0 +1,692 @@
+[
+  {
+    "name": "real-proof-identity",
+    "description": "The site proof, signed by demo agent 31; all four checks pass.",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDO73LCGQTKWCEKQ55C5BUBOFKGCAXXOP6MZ35YQ6BRSQKCKDDSAWECM",
+        "agentId": "31"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "f951b337cdf8305e523a88fc2cf9db9c44a763c837718aa819a9041f00be73d0",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-28T17:17:36.407Z",
+      "nonce": "6a3d1e6f647beaee9977e14118aefb69",
+      "sig": {
+        "alg": "ed25519",
+        "value": "2299296f7e569940c570a6d5ded8525288da3ff5efdb898ca3534cabb1c1fa41687658968cd6dd0519d55fe2e9a9b5dfc68f1ad6c7b589ac88a1f8d188f57400"
+      }
+    },
+    "input": "Summarise: AgentEnact binds every paid output to the payment that bought it.",
+    "output": "{\"summary\":\"Paid outputs carry a signed record tying input, output and settlement together.\",\"inputBytes\":76}",
+    "expect": {
+      "ok": true,
+      "checks": {
+        "signature": "pass",
+        "settlement": "pass",
+        "timing": "pass",
+        "identity": "pass"
+      }
+    }
+  },
+  {
+    "name": "real-first-payment",
+    "description": "The first x402 payment record (2026-09-22); no agentId, so identity is skipped.",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDO73LCGQTKWCEKQ55C5BUBOFKGCAXXOP6MZ35YQ6BRSQKCKDDSAWECM"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "f2a1cf804df37d1e779d759ef87bbeca5b37fa9bcca75fc2d59ad92e0eb47f75",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-22T21:35:24.765Z",
+      "nonce": "e69d9ae836caa6dd5f84bdd1b046f0d2",
+      "sig": {
+        "alg": "ed25519",
+        "value": "7fc36d243c49741dfaf5729cff3ee595971f78efc760188c38f98a4beedf00b72feba89a36721907fa70e336bfd52ee0d8ce5e412ca7c5fc32acf6035e7f8b0d"
+      }
+    },
+    "input": "Summarise: AgentEnact binds every paid output to the payment that bought it.",
+    "output": "{\"summary\":\"Paid outputs carry a signed record tying input, output and settlement together.\",\"inputBytes\":76}",
+    "expect": {
+      "ok": true,
+      "checks": {
+        "signature": "pass",
+        "settlement": "pass",
+        "timing": "pass",
+        "identity": "skipped"
+      }
+    }
+  },
+  {
+    "name": "tampered-input-hash",
+    "description": "input.sha256 changed after signing.",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDO73LCGQTKWCEKQ55C5BUBOFKGCAXXOP6MZ35YQ6BRSQKCKDDSAWECM",
+        "agentId": "31"
+      },
+      "input": {
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "f951b337cdf8305e523a88fc2cf9db9c44a763c837718aa819a9041f00be73d0",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-28T17:17:36.407Z",
+      "nonce": "6a3d1e6f647beaee9977e14118aefb69",
+      "sig": {
+        "alg": "ed25519",
+        "value": "2299296f7e569940c570a6d5ded8525288da3ff5efdb898ca3534cabb1c1fa41687658968cd6dd0519d55fe2e9a9b5dfc68f1ad6c7b589ac88a1f8d188f57400"
+      }
+    },
+    "expect": {
+      "ok": false,
+      "checks": {
+        "signature": "fail",
+        "settlement": "skipped",
+        "timing": "skipped",
+        "identity": "skipped"
+      },
+      "failure": {
+        "check": "signature",
+        "reason": "invalid_signature"
+      }
+    }
+  },
+  {
+    "name": "tampered-amount",
+    "description": "settlement.amount raised after signing.",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDO73LCGQTKWCEKQ55C5BUBOFKGCAXXOP6MZ35YQ6BRSQKCKDDSAWECM",
+        "agentId": "31"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "f951b337cdf8305e523a88fc2cf9db9c44a763c837718aa819a9041f00be73d0",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "1.0000000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-28T17:17:36.407Z",
+      "nonce": "6a3d1e6f647beaee9977e14118aefb69",
+      "sig": {
+        "alg": "ed25519",
+        "value": "2299296f7e569940c570a6d5ded8525288da3ff5efdb898ca3534cabb1c1fa41687658968cd6dd0519d55fe2e9a9b5dfc68f1ad6c7b589ac88a1f8d188f57400"
+      }
+    },
+    "expect": {
+      "ok": false,
+      "checks": {
+        "signature": "fail",
+        "settlement": "skipped",
+        "timing": "skipped",
+        "identity": "skipped"
+      },
+      "failure": {
+        "check": "signature",
+        "reason": "invalid_signature"
+      }
+    }
+  },
+  {
+    "name": "tampered-signature-byte",
+    "description": "Last byte of the signature changed.",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDO73LCGQTKWCEKQ55C5BUBOFKGCAXXOP6MZ35YQ6BRSQKCKDDSAWECM",
+        "agentId": "31"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "f951b337cdf8305e523a88fc2cf9db9c44a763c837718aa819a9041f00be73d0",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-28T17:17:36.407Z",
+      "nonce": "6a3d1e6f647beaee9977e14118aefb69",
+      "sig": {
+        "alg": "ed25519",
+        "value": "2299296f7e569940c570a6d5ded8525288da3ff5efdb898ca3534cabb1c1fa41687658968cd6dd0519d55fe2e9a9b5dfc68f1ad6c7b589ac88a1f8d188f57401"
+      }
+    },
+    "expect": {
+      "ok": false,
+      "checks": {
+        "signature": "fail",
+        "settlement": "skipped",
+        "timing": "skipped",
+        "identity": "skipped"
+      },
+      "failure": {
+        "check": "signature",
+        "reason": "invalid_signature"
+      }
+    }
+  },
+  {
+    "name": "wrong-alg",
+    "description": "sig.alg claims secp256k1-eip191 on a Stellar record.",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDO73LCGQTKWCEKQ55C5BUBOFKGCAXXOP6MZ35YQ6BRSQKCKDDSAWECM",
+        "agentId": "31"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "f951b337cdf8305e523a88fc2cf9db9c44a763c837718aa819a9041f00be73d0",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-28T17:17:36.407Z",
+      "nonce": "6a3d1e6f647beaee9977e14118aefb69",
+      "sig": {
+        "alg": "secp256k1-eip191",
+        "value": "2299296f7e569940c570a6d5ded8525288da3ff5efdb898ca3534cabb1c1fa41687658968cd6dd0519d55fe2e9a9b5dfc68f1ad6c7b589ac88a1f8d188f57400"
+      }
+    },
+    "expect": {
+      "ok": false,
+      "checks": {
+        "signature": "fail",
+        "settlement": "skipped",
+        "timing": "skipped",
+        "identity": "skipped"
+      },
+      "failure": {
+        "check": "signature",
+        "reason": "alg_mismatch"
+      }
+    }
+  },
+  {
+    "name": "unsupported-version",
+    "description": "v is not 0.1.",
+    "record": {
+      "v": "0.9",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDO73LCGQTKWCEKQ55C5BUBOFKGCAXXOP6MZ35YQ6BRSQKCKDDSAWECM",
+        "agentId": "31"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "f951b337cdf8305e523a88fc2cf9db9c44a763c837718aa819a9041f00be73d0",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-28T17:17:36.407Z",
+      "nonce": "6a3d1e6f647beaee9977e14118aefb69",
+      "sig": {
+        "alg": "ed25519",
+        "value": "2299296f7e569940c570a6d5ded8525288da3ff5efdb898ca3534cabb1c1fa41687658968cd6dd0519d55fe2e9a9b5dfc68f1ad6c7b589ac88a1f8d188f57400"
+      }
+    },
+    "expect": {
+      "ok": false,
+      "checks": {
+        "signature": "skipped",
+        "settlement": "skipped",
+        "timing": "skipped",
+        "identity": "skipped"
+      },
+      "failure": {
+        "check": "record",
+        "reason": "unsupported_version"
+      }
+    }
+  },
+  {
+    "name": "settlement-not-found",
+    "description": "Valid signature over a settlement ref Horizon does not know.",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDYZ3ZIV2AULMI2KBD2FAAH75DV37VTBCSGUQCEQUHVTQ5FD6JFGVXPV"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "00000000000000000000000000000000000000000000000000000000000000ff",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-28T17:17:36.000Z",
+      "nonce": "0f1e2d3c4b5a69788796a5b4c3d2e1f0",
+      "sig": {
+        "alg": "ed25519",
+        "value": "80a581ad9cd0a6916e51bef832ab0b0bdd57fc4681e64aed612a9665c029c9d2924d896189a0b232c5c95f2a5adbe555692309bd2df79889507cb4e41ee5d60b"
+      }
+    },
+    "expect": {
+      "ok": false,
+      "checks": {
+        "signature": "pass",
+        "settlement": "fail",
+        "timing": "skipped",
+        "identity": "skipped"
+      },
+      "failure": {
+        "check": "settlement",
+        "reason": "not_found"
+      }
+    }
+  },
+  {
+    "name": "settlement-before-history",
+    "description": "Missing settlement, issued 2025-06-01: before the oldest testnet ledger (reset 2025-12-17).",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDYZ3ZIV2AULMI2KBD2FAAH75DV37VTBCSGUQCEQUHVTQ5FD6JFGVXPV"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "00000000000000000000000000000000000000000000000000000000000000ff",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2025-06-01T12:00:00.000Z",
+      "nonce": "0f1e2d3c4b5a69788796a5b4c3d2e1f0",
+      "sig": {
+        "alg": "ed25519",
+        "value": "5be856703eca1f71c84c1142891c15e160c098346e0556d3f2f3081e9d99e47a2cc5f8da420d92c0885c804582f5e86c7ea6e3d690d021b47de4c39814b7600d"
+      }
+    },
+    "expect": {
+      "ok": false,
+      "checks": {
+        "signature": "pass",
+        "settlement": "fail",
+        "timing": "skipped",
+        "identity": "skipped"
+      },
+      "failure": {
+        "check": "settlement",
+        "reason": "history_unavailable"
+      }
+    }
+  },
+  {
+    "name": "settlement-pays-someone-else",
+    "description": "Valid signature, but the real proof tx paid demo agent 31, not this key.",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDYZ3ZIV2AULMI2KBD2FAAH75DV37VTBCSGUQCEQUHVTQ5FD6JFGVXPV"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "f951b337cdf8305e523a88fc2cf9db9c44a763c837718aa819a9041f00be73d0",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-28T17:17:36.000Z",
+      "nonce": "0f1e2d3c4b5a69788796a5b4c3d2e1f0",
+      "sig": {
+        "alg": "ed25519",
+        "value": "df2561a16d298b91d386f13f9ef5c4ab7ee68f4a0b2dc513dc32e67facd0ed7fb6bb76c299d967e899fcc0c2eb7156aa2902ba3d68ec657128c1ff65a267510d"
+      }
+    },
+    "expect": {
+      "ok": false,
+      "checks": {
+        "signature": "pass",
+        "settlement": "fail",
+        "timing": "skipped",
+        "identity": "skipped"
+      },
+      "failure": {
+        "check": "settlement",
+        "reason": "no_matching_payment"
+      }
+    }
+  },
+  {
+    "name": "vector-key-good",
+    "description": "Vector key paid by the synthetic tx; passes without identity.",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDYZ3ZIV2AULMI2KBD2FAAH75DV37VTBCSGUQCEQUHVTQ5FD6JFGVXPV"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "7e53d00902ac22c2cfc78107145d7c299387221d960b5f3682589591c6bae157",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-28T17:17:36.000Z",
+      "nonce": "0f1e2d3c4b5a69788796a5b4c3d2e1f0",
+      "sig": {
+        "alg": "ed25519",
+        "value": "13372e81f6cf689a5cb5380da5a56234d59b6fbab7062a17d41d9d205c3638801ea193eae6925becbe981cbf5494a2db340268cea172aa02125734576c662c01"
+      }
+    },
+    "expect": {
+      "ok": true,
+      "checks": {
+        "signature": "pass",
+        "settlement": "pass",
+        "timing": "pass",
+        "identity": "skipped"
+      }
+    }
+  },
+  {
+    "name": "issued-before-settlement",
+    "description": "issuedAt one minute before the tx closed.",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDYZ3ZIV2AULMI2KBD2FAAH75DV37VTBCSGUQCEQUHVTQ5FD6JFGVXPV"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "7e53d00902ac22c2cfc78107145d7c299387221d960b5f3682589591c6bae157",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-28T17:16:32.000Z",
+      "nonce": "0f1e2d3c4b5a69788796a5b4c3d2e1f0",
+      "sig": {
+        "alg": "ed25519",
+        "value": "3d90986b7687a291581aab6b879b6305a9471f481ca6f2413512b6ba40fc08b5f5b26d84a374ebddfbbba79ad6b34c4dfc8ac957a4cc9a6c64e6fdad5d328001"
+      }
+    },
+    "expect": {
+      "ok": false,
+      "checks": {
+        "signature": "pass",
+        "settlement": "pass",
+        "timing": "fail",
+        "identity": "skipped"
+      },
+      "failure": {
+        "check": "timing",
+        "reason": "issued_before_settlement"
+      }
+    }
+  },
+  {
+    "name": "issued-after-window",
+    "description": "issuedAt two days after the tx closed (default window 24 h).",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDYZ3ZIV2AULMI2KBD2FAAH75DV37VTBCSGUQCEQUHVTQ5FD6JFGVXPV"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "7e53d00902ac22c2cfc78107145d7c299387221d960b5f3682589591c6bae157",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-30T17:17:36.000Z",
+      "nonce": "0f1e2d3c4b5a69788796a5b4c3d2e1f0",
+      "sig": {
+        "alg": "ed25519",
+        "value": "acc63849c7fd9e3e98f2687d0c86e869809cbd13ea17453c0df8b77be62ffafbd3afa09595d4be9e316d281a61cbb5920937f2cbf7fd67b9f7d2cc248eeb6603"
+      }
+    },
+    "expect": {
+      "ok": false,
+      "checks": {
+        "signature": "pass",
+        "settlement": "pass",
+        "timing": "fail",
+        "identity": "skipped"
+      },
+      "failure": {
+        "check": "timing",
+        "reason": "issued_after_window"
+      }
+    }
+  },
+  {
+    "name": "identity-unregistered",
+    "description": "Claims agentId 4000000, which the testnet registry does not know.",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDYZ3ZIV2AULMI2KBD2FAAH75DV37VTBCSGUQCEQUHVTQ5FD6JFGVXPV",
+        "agentId": "4000000"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "7e53d00902ac22c2cfc78107145d7c299387221d960b5f3682589591c6bae157",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-28T17:17:36.000Z",
+      "nonce": "0f1e2d3c4b5a69788796a5b4c3d2e1f0",
+      "sig": {
+        "alg": "ed25519",
+        "value": "f189f7de8fe7a9a13d3d85faac84c0d8660d8e13ccad6d3eaacd3e42e3c9af171e7812104d6aa564ad0477a504cda315647a03465e13f5703f9cef0b9072260f"
+      }
+    },
+    "expect": {
+      "ok": false,
+      "checks": {
+        "signature": "pass",
+        "settlement": "pass",
+        "timing": "pass",
+        "identity": "fail"
+      },
+      "failure": {
+        "check": "identity",
+        "reason": "unregistered"
+      }
+    }
+  },
+  {
+    "name": "identity-not-bound",
+    "description": "Claims agentId 31, which binds the demo agent, not this key.",
+    "record": {
+      "v": "0.1",
+      "agent": {
+        "chain": "stellar",
+        "address": "GDYZ3ZIV2AULMI2KBD2FAAH75DV37VTBCSGUQCEQUHVTQ5FD6JFGVXPV",
+        "agentId": "31"
+      },
+      "input": {
+        "sha256": "78423bdf0afa22997f74d9c7a9c15fcd1400db82a4c74ca3b4da47e17aebaddb",
+        "mediaType": "text/plain"
+      },
+      "output": {
+        "sha256": "4135af45e93f3646c1657873f49721b73a1f4e2398aa8c976123018901aacf4e",
+        "mediaType": "application/json",
+        "bytes": 109
+      },
+      "settlement": {
+        "chain": "stellar",
+        "ref": "7e53d00902ac22c2cfc78107145d7c299387221d960b5f3682589591c6bae157",
+        "payer": "GCH36APKUXHZV7XIYRNACW353E6AWT5TTCEEOHRSWHMS2BM74DVNKNZ3",
+        "amount": "0.0010000",
+        "asset": "USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+      },
+      "issuedAt": "2026-09-28T17:17:36.000Z",
+      "nonce": "0f1e2d3c4b5a69788796a5b4c3d2e1f0",
+      "sig": {
+        "alg": "ed25519",
+        "value": "c40d8064f3ca5e63570ac261fced6e13c1b48022a1d27337b63fad5e1e61425c48976f55b95edca89933ebb6029e95ca0cd61955a414a12487d7df1ed6abc304"
+      }
+    },
+    "expect": {
+      "ok": false,
+      "checks": {
+        "signature": "pass",
+        "settlement": "pass",
+        "timing": "pass",
+        "identity": "fail"
+      },
+      "failure": {
+        "check": "identity",
+        "reason": "address_not_bound"
+      }
+    }
+  }
+]
